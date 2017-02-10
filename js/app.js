@@ -18,7 +18,7 @@ var app = new Vue({
         var t = event.start;
         var e = event.end;
         return [
-          t.getDay(),
+          t.getDate(),
           '.',
           t.getMonth() + 1,
           '. klo ',
@@ -49,13 +49,17 @@ function getCalendarData() {
     for (var i in events) {
       var ev = new ICAL.Event(events[i]);
       var t = ev.startDate;
+      var endDate = parseTime(ev.endDate)
 
-      retVal.push({
-        summary: ev.summary,
-        start: parseTime(ev.startDate),
-        end: parseTime(ev.endDate),
-        location: ev.location
-      });
+      if (endDate > new Date()) {
+        retVal.push({
+          summary: ev.summary,
+          start: parseTime(ev.startDate),
+          end: endDate,
+          location: ev.location
+        });
+      }
+
     }
 
     retVal.sort((a, b) => {
