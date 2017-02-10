@@ -3,11 +3,62 @@
   <head>
     <meta charset="utf-8">
     <title>Kukkas</title>
+
+    <link rel="stylesheet" href="./app.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script src="./node_modules/vue-resource/dist/vue-resource.min.js"></script>
+    <script src="./node_modules/ical.js/build/ical.min.js"></script>
+    <script src="./js/google.js"></script>
   </head>
   <body>
-    <h1 style="text-align: center;">Coming soon...</h1>
-    <!-- LightWidget WIDGET -->
-    <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/b56809acfa3e5171bb2d26cfcb1e91c7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+    <div id="app">
+      <!-- Logo -->
+      <header>
+        <img src="assets/kukkas.png" class="logo" alt="Kukkas logo">
+      </header>
 
+      <!-- Next sales -->
+      <section class="arrow_box">
+        <h1 v-if="calendarData[0]">
+          Seuraava myynti <br />
+          {{ calendarData[0] | salesWindow }} <br />
+          {{ calendarData[0].location }}
+        </h1>
+      </section>
+
+      <!-- Map -->
+      <section class="no-pad">
+        <div id="map"></div>
+      </section>
+
+      <!-- Pitch -->
+      <section class="bg--yellow">
+        <h1>Kukkia kotiin <br />matkasta mukaan</h1>
+      </section>
+
+      <!-- Next sales -->
+      <section>
+        <ol>
+          <li v-for="event in calendarData">
+            {{ event.summary }} {{ event | salesWindow }} {{ event.location }}
+          </li>
+        </ol>
+      </section>
+
+      <!-- Instafeed -->
+      <!-- LightWidget WIDGET -->
+      <section class="no-pad">
+        <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/b56809acfa3e5171bb2d26cfcb1e91c7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+      </section>
+
+      <!-- Contact -->
+      <section>
+        <h1>Yhteystiedot</h1>
+      </section>
+    </div>
+    <script src="./js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5CicyOj31WzXL0Kuyn0fgQl4zhcMjC1k&callback=initMap"
+        async defer></script>
   </body>
 </html>
