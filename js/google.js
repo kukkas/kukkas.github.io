@@ -28,7 +28,8 @@ function setSalesMarker(event) {
         var marker = new google.maps.Marker({
           map: map,
           position: latLng,
-          title: 'Seuraava myynti: ' + response.body.results[0].formatted_address
+          title: 'Seuraava myynti: ' + response.body.results[0].formatted_address,
+          icon: './assets/map_needle.svg'
         });
         map.setCenter(latLng);
       }
