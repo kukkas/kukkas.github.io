@@ -10,6 +10,7 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   font-weight: 300;
+  color: #90c44b;
 }
 
 * {
@@ -24,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-  width: 300px;
+  width: 150px;
 }
 
 header {
@@ -42,6 +43,19 @@ section {
   color: white;
 }
 
+.bg--green {
+  background-color: #90c44b;
+  color: white;
+}
+
+.bg--green h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+.lowercase {
+  text-transform: none;
+}
+
 .no-pad {
   padding: 0;
 }
@@ -51,6 +65,42 @@ section {
   height: 500px;
 }
 
+.next-sale {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  /*top: 50%;*/
+  /*transform: translateY(-50%);*/
+}
+
+.next-sale__date, .next-sale__location {
+  color: #90c44b;
+  text-transform: none;
+}
+
+.next-sale__date {
+  font-size: 2em;
+}
+
+.next-sale {
+  display: inline-block;
+}
+
+.next-sale * {
+  margin: 0;
+}
+
+.next-sale-section {
+  background-image: url('./assets/bouquet.jpg');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.next-sale__heading {
+  color: black;
+  text-transform: none;
+}
 
 .arrow_box {
 	position: relative;
@@ -65,7 +115,7 @@ section {
 	position: absolute;
 	pointer-events: none;
 	border-color: rgba(255, 219, 59, 0);
-	border-top-color: #ffdb3b;
+	border-top-color: #90c44b;
 	border-width: 60px;
 	margin-left: -60px;
   z-index: 1;

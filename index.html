@@ -19,12 +19,12 @@
       </header>
 
       <!-- Next sales -->
-      <section class="arrow_box">
-        <h1 v-if="calendarData[0]">
-          Seuraava myynti <br />
-          {{ calendarData[0] | salesWindow }} <br />
-          {{ calendarData[0].location }}
-        </h1>
+      <section class="arrow_box next-sale-section">
+        <div v-if="calendarData[0]" class="next-sale">
+          <h3 class="next-sale__heading">Seuraava myynti</h3>
+          <h1 class="next-sale__date">{{ calendarData[0] | salesWindow }}</h1>
+          <h2 class="next-sale__location">{{ calendarData[0].location }}</h2>
+        </div>
       </section>
 
       <!-- Map -->
@@ -33,22 +33,22 @@
       </section>
 
       <!-- Pitch -->
-      <section class="bg--yellow">
+      <section>
         <h1>Kukkia kotiin <br />matkasta mukaan</h1>
       </section>
 
       <!-- Next sales -->
-      <section>
-        <ol>
-          <li v-for="event in calendarData">
-            {{ event.summary }} {{ event | salesWindow }} {{ event.location }}
-          </li>
-        </ol>
+      <section class="bg--green">
+        <h1>Tulevat myynnit</h1>
+        <h3 v-for="event in calendarData" class="lowercase">
+          {{ event.summary }} {{ event | salesWindow }} {{ event.location }}
+        </h3>
       </section>
 
       <!-- Instafeed -->
       <!-- LightWidget WIDGET -->
       <section class="no-pad">
+        <h1>#kukkas instagramissa</h1>
         <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/b56809acfa3e5171bb2d26cfcb1e91c7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
       </section>
 
