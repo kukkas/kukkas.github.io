@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #90c44b;
 }
 
+a {
+  color: inherit;
+}
+
 * {
   /*text-align: center;*/
   box-sizing: border-box;
@@ -100,6 +104,16 @@ section {
 .next-sale__heading {
   color: black;
   text-transform: none;
+}
+
+.contact-link {
+  padding: 20px 40px;
+  display: inline-block;
+}
+
+.contact-icon {
+  height: 30px;
+  vertical-align: bottom;
 }
 
 .arrow_box {

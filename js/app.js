@@ -5,6 +5,22 @@ var app = new Vue({
     docsURL: 'http://vuejs.org/guide/',
     gitterURL: 'https://gitter.im/vuejs/vue',
     forumURL: 'http://forum.vuejs.org/',
+    links: [{
+      text: 'info@kukkas.fi',
+      href: 'mailto:info@kukkas.fi'
+    },{
+      text: '#kukkas',
+      href: 'https://www.instagram.com/kukkas.fi/',
+      icon: './assets/icons/insta.svg'
+    },{
+      text: 'kukkas.fi',
+      href: 'https://www.facebook.com/kukkas.fi/',
+      icon: './assets/icons/fb.svg'
+    },{
+      text: '@kukkas_fi',
+      href: 'https://twitter.com/kukkas_fi',
+      icon: './assets/icons/tw.svg'
+    }],
     calendarData: []
   },
   methods: {

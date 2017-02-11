@@ -35,6 +35,9 @@
       <!-- Pitch -->
       <section>
         <h1>Kukkia kotiin <br />matkasta mukaan</h1>
+        <p>
+          Teemme myös erikoistilauksia: hääkukat, kukat yritystilaisuuksiin jne. Kysy <a href="#contact">lisää</a>
+        </p>
       </section>
 
       <!-- Next sales -->
@@ -47,14 +50,18 @@
 
       <!-- Instafeed -->
       <!-- LightWidget WIDGET -->
-      <section class="no-pad">
+      <section>
         <h1>#kukkas instagramissa</h1>
         <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/b56809acfa3e5171bb2d26cfcb1e91c7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
       </section>
 
       <!-- Contact -->
-      <section>
+      <section id="contact">
         <h1>Yhteystiedot</h1>
+        <a v-for="link in links" class="contact-link" v-bind:href="link.href">
+          <img v-if="link.icon" v-bind:src="link.icon" class="contact-icon" />
+          {{ link.text }}
+        </a>
       </section>
     </div>
     <script src="./js/app.js"></script>
