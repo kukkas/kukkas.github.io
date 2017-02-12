@@ -65,7 +65,7 @@
       <section class="bg--green">
         <h1>Tulevat myynnit</h1>
         <h3 v-for="event in calendarData" class="lowercase">
-          {{ event.summary }} {{ event | salesWindow }} {{ event.location }}
+          {{ event | salesWindow }} <span v-if="event.summary.toLowerCase() !== 'myynti'">{{ event.summary }}, </span> {{ event.location }}
         </h3>
       </section>
 
