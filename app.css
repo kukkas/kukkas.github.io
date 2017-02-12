@@ -30,10 +30,11 @@ a {
 
 .logo {
   width: 200px;
+  margin: 10px;
 }
 
 header {
-  background-color: #90c44b;
+  background-color: black;
 }
 
 section {
