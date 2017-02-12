@@ -7,19 +7,20 @@ var app = new Vue({
     forumURL: 'http://forum.vuejs.org/',
     links: [{
       text: 'info@kukkas.fi',
-      href: 'mailto:info@kukkas.fi'
+      href: 'mailto:info@kukkas.fi',
+      icon: './assets/icons/mail.png'
     },{
       text: '#kukkas',
       href: 'https://www.instagram.com/kukkas.fi/',
-      icon: './assets/icons/insta.svg'
+      icon: './assets/icons/instagram.png'
     },{
       text: 'kukkas.fi',
       href: 'https://www.facebook.com/kukkas.fi/',
-      icon: './assets/icons/fb.svg'
+      icon: './assets/icons/facebook.png'
     },{
       text: '@kukkas_fi',
       href: 'https://twitter.com/kukkas_fi',
-      icon: './assets/icons/tw.svg'
+      icon: './assets/icons/twitter.png'
     }],
     calendarData: []
   },
@@ -47,7 +48,34 @@ var app = new Vue({
           ('00' + e.getMinutes().toString()).substring(e.getMinutes().toString().length),
         ].join('')
       }
-    }
+    },
+    salesDate: function(event) {
+      if (event) {
+        var t = event.start;
+        return [
+          t.getDate(),
+          '.',
+          t.getMonth() + 1,
+          '.',
+          t.getFullYear()
+        ].join('')
+      }
+    },
+    salesTime: function(event) {
+      if (event) {
+        var t = event.start;
+        var e = event.end;
+        return [
+          t.getHours(),
+          ':',
+          ('00' + t.getMinutes().toString()).substring(t.getMinutes().toString().length),
+          ' - ',
+          e.getHours(),
+          ':',
+          ('00' + e.getMinutes().toString()).substring(e.getMinutes().toString().length),
+        ].join('')
+      }
+    },
   }
 });
 

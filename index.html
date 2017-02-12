@@ -30,9 +30,11 @@
       <!-- Next sales -->
       <section class="arrow_box next-sale-section">
         <div v-if="calendarData[0]" class="next-sale">
-          <h3 class="next-sale__heading">Seuraava myynti</h3>
-          <h1 class="next-sale__date">{{ calendarData[0] | salesWindow }}</h1>
-          <h2 class="next-sale__location">{{ calendarData[0].location }}</h2>
+          <div class="next-sale__inner-container">
+            <h3 class="next-sale__heading">Seuraava myynti</h3>
+            <h1 class="next-sale__date">{{ calendarData[0] | salesDate }}<br />{{ calendarData[0] | salesTime }}</h1>
+            <h2 class="next-sale__location">{{ calendarData[0].location }}</h2>
+          </div>
         </div>
       </section>
 
@@ -65,11 +67,11 @@
       </section>
 
       <!-- Contact -->
-      <section id="contact">
+      <section id="contact" class="contact-section">
         <h1>Yhteystiedot</h1>
         <a v-for="link in links" class="contact-link" v-bind:href="link.href">
           <img v-if="link.icon" v-bind:src="link.icon" class="contact-icon" />
-          {{ link.text }}
+          <span class="contact-link__text">{{ link.text }}</span>
         </a>
       </section>
     </div>

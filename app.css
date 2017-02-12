@@ -52,6 +52,11 @@ section {
   color: white;
 }
 
+.contact-section {
+  background-color: black;
+  color: #90c44b;
+}
+
 .bg--green h1, h2, h3, h4, h5, h6 {
   color: white;
 }
@@ -73,21 +78,27 @@ section {
   background-color: white;
   margin: auto;
   padding: 20px;
-  /*top: 50%;*/
-  /*transform: translateY(-50%);*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(144, 196, 75, 0.6);
 }
 
 .next-sale__date, .next-sale__location {
-  color: #90c44b;
+  color: white;
   text-transform: none;
 }
 
 .next-sale__date {
-  font-size: 2em;
+  font-size: 3em;
+  font-weight: 400;
 }
 
-.next-sale {
-  display: inline-block;
+.next-sale__location {
+  font-size: 2em;
+  font-weight: 400;
 }
 
 .next-sale * {
@@ -99,10 +110,21 @@ section {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 400px;
+}
+
+.next-sale__inner-container {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  left: 50%;
 }
 
 .next-sale__heading {
-  color: black;
   text-transform: none;
 }
 
@@ -112,8 +134,9 @@ section {
 }
 
 .contact-icon {
-  height: 30px;
-  vertical-align: bottom;
+  height: 64px;
+  display: block;
+  margin: auto;
 }
 
 .arrow_box {
@@ -128,8 +151,8 @@ section {
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-color: rgba(255, 219, 59, 0);
-	border-top-color: #90c44b;
+	border-color: transparent;
+	border-top-color: rgba(144, 196, 75, 0.6);
 	border-width: 60px;
 	margin-left: -60px;
   z-index: 1;
