@@ -85,7 +85,7 @@ function parseTime(t) {
 
 function getCalendarData() {
   var retVal = [];
-  app.$http.get('http://cors-anywhere.herokuapp.com/https://calendar.zoho.com/ical/ffde202689b20c9dfcafdf4d6ab6710bf8f24d7aff3a1d7a6c69b66f6f196b992ce960a86a96676fee5ae0c4ec0683b7').then(response => {
+  app.$http.get('http://cors-anywhere.herokuapp.com/https://calendar.zoho.com/ical/ffde202689b20c9dfcafdf4d6ab6710bf8f24d7aff3a1d7a6c69b66f6f196b992ce960a86a96676fee5ae0c4ec0683b7').then(function(response) {
     var jcalData = ICAL.parse(response.body);
     var vcalendar = new ICAL.Component(jcalData);
     var events = vcalendar.getAllSubcomponents('vevent');
@@ -106,7 +106,7 @@ function getCalendarData() {
 
     }
 
-    retVal.sort((a, b) => {
+    retVal.sort(function(a, b) {
       return a.date - b.date;
     });
 
@@ -116,7 +116,7 @@ function getCalendarData() {
       setSalesMarker(retVal[0]);
     }
 
-  }, response => {
+  }, function(response) {
     console.error('Did not get ical data', arguments)
     app.calendarData = events;
   });

@@ -20,7 +20,7 @@ function initMap() {
 function setSalesMarker(event) {
   console.log('set marker', event)
   if (event.location)
-    app.$http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + event.location + '&key=' + API_KEY).then(response => {
+    app.$http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + event.location + '&key=' + API_KEY).then(function(response) {
       // Create a marker and set its position.
       if (response.body.results && response.body.results.length > 0) {
         var latLng = response.body.results[0].geometry.location;
@@ -34,7 +34,7 @@ function setSalesMarker(event) {
         map.setCenter(latLng);
       }
 
-    }, response => {
+    }, function(response) {
       console.error('Could not resolve geocode', response)
     });
 }
