@@ -38,7 +38,7 @@
       </header>
 
       <!-- Next sales -->
-      <section class="arrow_box next-sale-section">
+      <section class="next-sale-section" v-bind:class="{'arrow_box': calendarData[0]}">
         <div v-if="calendarData[0]" class="next-sale">
           <div class="next-sale__inner-container">
             <h3 class="next-sale__heading">Seuraava myynti</h3>
@@ -49,12 +49,12 @@
       </section>
 
       <!-- Map -->
-      <section class="no-pad">
+      <section class="no-pad" v-bind:class="{'map--hidden': !calendarData[0]}">
         <div id="map"></div>
       </section>
 
       <!-- Pitch -->
-      <section>
+      <section v-bind:class="{'bg--green': calendarData.length < 2}">
         <h1>Kukkia kotiin <br />matkasta mukaan</h1>
         <p>
           Teemme myös erikoistilauksia: hääkukat, kukat yritystilaisuuksiin jne. Kysy <a href="#contact">lisää</a>
@@ -62,7 +62,7 @@
       </section>
 
       <!-- Next sales -->
-      <section class="bg--green">
+      <section class="bg--green" v-if="calendarData.length > 1">
         <h1>Tulevat myynnit</h1>
         <h3 v-for="event in calendarData" class="lowercase">
           {{ event | salesWindow }} <span v-if="event.summary.toLowerCase() !== 'myynti'">{{ event.summary }}, </span> {{ event.location }}
@@ -72,12 +72,19 @@
       <!-- Instafeed -->
       <section>
         <h1>#kukkas instagramissa</h1>
-        <!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f00bfc74b8495d4bb6bef38e7f085705.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+        <script src="//assets.juicer.io/embed.js" type="text/javascript"></script>
+        <link href="//assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+        <ul class="juicer-feed"
+            data-feed-id="kukkas"
+            data-per="5"
+            data-gutter="20"
+            data-pages="1"
+            ></ul>
       </section>
 
       <!-- Contact -->
       <section id="contact" class="contact-section">
-        <h1>Yhteystiedot</h1>
+        <!-- <h1>Yhteystiedot</h1> -->
         <a v-for="link in links" class="contact-link" v-bind:href="link.href">
           <img v-if="link.icon" v-bind:src="link.icon" class="contact-icon" />
           <span class="contact-link__text">{{ link.text }}</span>
