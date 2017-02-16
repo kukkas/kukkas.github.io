@@ -1,1 +1,3 @@
-# kukkas.github.io
+# kukkas.fi website
+
+Run with ```live-server```
