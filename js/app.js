@@ -118,7 +118,7 @@ function getCalendarData() {
 
   }, function(response) {
     console.error('Did not get ical data', arguments)
-    app.calendarData = events;
+    app.calendarData = [];
   });
 }
 
