@@ -179,3 +179,19 @@ section {
 .referral, .j-paginate {
   display: none !important;
 }
+
+
+@media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   -moz-min-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+
+  /* Retina-specific stuff here */
+  .next-sale-section {
+    background-image: url('./assets/bouquet@2x.jpg');
+  }
+
+}
