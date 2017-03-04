@@ -107,7 +107,7 @@ function getCalendarData() {
     }
 
     retVal.sort(function(a, b) {
-      return a.date - b.date;
+      return a.start - b.start;
     });
 
     app.calendarData = retVal;
