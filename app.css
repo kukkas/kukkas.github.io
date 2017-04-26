@@ -118,7 +118,7 @@ section {
 }
 
 .next-sale-section {
-  background-image: url('./assets/bouquet.jpg');
+  background-image: url('./assets/hero.jpg');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -191,7 +191,7 @@ section {
 
   /* Retina-specific stuff here */
   .next-sale-section {
-    background-image: url('./assets/bouquet@2x.jpg');
+    background-image: url('./assets/hero@2x.jpg');
   }
 
 }
