@@ -49,20 +49,18 @@ var app = new Vue({
         ].join('')
       }
     },
-    salesDate: function(event) {
+    formatSalesDate: function (event) {
       if (event) {
-        var t = event.start;
-        return [
-          t.getDate(),
-          '.',
-          t.getMonth() + 1,
-          '.',
-          t.getFullYear()
-        ].join('')
+        // Multiple days?
+        if (event.duration.days > 1) {
+          return salesSpan(event)
+        } else {
+          return salesDate(event)
+        }
       }
     },
-    salesTime: function(event) {
-      if (event) {
+    salesTime: function (event) {
+      if (event && event.duration.days === 0) {
         var t = event.start;
         var e = event.end;
         return [
@@ -75,18 +73,22 @@ var app = new Vue({
           ('00' + e.getMinutes().toString()).substring(e.getMinutes().toString().length),
         ].join('')
       }
-    },
+    }
   }
 });
 
 function parseTime(t) {
-  return new Date(Date.UTC(t.year, t.month - 1, t.day, t.hour, t.minute));
+  return new Date(Date.UTC(t.year, t.month - 1, (t.hour === 0 ? t.day - 1 : t.day), t.hour, t.minute));
 }
 
 function getCalendarData() {
   var retVal = [];
-  app.$http.get('http://cors-anywhere.herokuapp.com/https://calendar.zoho.com/ical/ffde202689b20c9dfcafdf4d6ab6710bf8f24d7aff3a1d7a6c69b66f6f196b992ce960a86a96676fee5ae0c4ec0683b7').then(function(response) {
-    var jcalData = ICAL.parse(response.body);
+
+  // Previous provider
+  // 'http://cors-anywhere.herokuapp.com/https://calendar.zoho.com/ical/ffde202689b20c9dfcafdf4d6ab6710bf8f24d7aff3a1d7a6c69b66f6f196b992ce960a86a96676fee5ae0c4ec0683b7'
+
+  app.$http.get('http://cors-proxy.htmldriven.com/?url=https://calendar.zoho.com/ical/ffde202689b20c9dfcafdf4d6ab6710bf8f24d7aff3a1d7a6c69b66f6f196b992ce960a86a96676fee5ae0c4ec0683b7').then(function(response) {
+    var jcalData = ICAL.parse(response.body.body);
     var vcalendar = new ICAL.Component(jcalData);
     var events = vcalendar.getAllSubcomponents('vevent');
 
@@ -94,11 +96,11 @@ function getCalendarData() {
       var ev = new ICAL.Event(events[i]);
       var t = ev.startDate;
       var endDate = parseTime(ev.endDate)
-
       if (endDate > new Date()) {
         retVal.push({
           summary: ev.summary,
-          start: parseTime(ev.startDate),
+          duration: ev.duration,
+          start: new Date(ev.startDate),
           end: endDate,
           location: ev.location
         });
@@ -120,6 +122,48 @@ function getCalendarData() {
     console.error('Did not get ical data', arguments)
     app.calendarData = [];
   });
+}
+
+function salesSpan (event) {
+  var s, e;
+  if (event && event.start.getMonth() === event.end.getMonth()) {
+    s = event.start
+    e = event.end
+    return [
+      s.getDate(),
+      '-',
+      e.getDate(),
+      '.',
+      s.getMonth() + 1,
+      '.'
+    ].join('')
+  } else {
+    // Spans across two months
+    s = event.start
+    e = event.end
+    return [
+      s.getDate(),
+      '.',
+      s.getMonth() + 1,
+      '-',
+      e.getDate(),
+      '.',
+      e.getMonth() + 1,
+      '.'
+    ].join('')
+  }
+}
+
+function salesDate (event) {
+  if (event) {
+    var t = event.start;
+    return [
+      t.getDate(),
+      '.',
+      t.getMonth() + 1,
+      '.'
+    ].join('')
+  }
 }
 
 getCalendarData();

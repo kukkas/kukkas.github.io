@@ -53,7 +53,11 @@
         <div v-if="calendarData[0]" class="next-sale" v-cloak>
           <div class="next-sale__inner-container">
             <h3 class="next-sale__heading">Seuraava myynti</h3>
-            <h1 class="next-sale__date">{{ calendarData[0] | salesDate }}<br />{{ calendarData[0] | salesTime }}</h1>
+            <h1 class="next-sale__date">
+              {{ calendarData[0] | formatSalesDate }}
+              <br />
+              {{ calendarData[0] | salesTime }}
+            </h1>
             <h2 class="next-sale__location">{{ calendarData[0].location }}</h2>
           </div>
         </div>
@@ -81,8 +85,10 @@
       <!-- Next sales -->
       <section class="bg--green" v-if="calendarData.length > 1">
         <h1>Tulevat myynnit</h1>
-        <h3 v-for="event in calendarData" class="lowercase">
-          {{ event | salesWindow }} <span v-if="event.summary.toLowerCase() !== 'myynti'">{{ event.summary }}, </span> {{ event.location }}
+        <h3 v-for="event in calendarData" class="lowercase" v-cloak>
+          {{ event | formatSalesDate }} {{ event | salesTime }} <span v-if="event.summary.toLowerCase() !== 'myynti'">{{ event.summary }} </span>
+          <br />
+          {{ event.location }}
         </h3>
       </section>
 

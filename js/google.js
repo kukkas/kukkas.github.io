@@ -18,13 +18,11 @@ function initMap() {
 }
 
 function setSalesMarker(event) {
-  console.log('set marker', event)
   if (event.location)
     app.$http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + event.location + '&key=' + API_KEY).then(function(response) {
       // Create a marker and set its position.
       if (response.body.results && response.body.results.length > 0) {
         var latLng = response.body.results[0].geometry.location;
-        console.log('latLng', latLng)
         var marker = new google.maps.Marker({
           map: map,
           position: latLng,
