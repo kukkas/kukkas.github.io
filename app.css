@@ -141,10 +141,25 @@ section {
 }
 
 .contact-link {
-  padding: 20px 40px;
+  padding: 20px;
+  min-width: 100%;
   display: inline-block;
   text-decoration: none;
 }
+
+@media screen and (min-width: 375px) {
+  .contact-link {
+    min-width: 50%;
+  }
+}
+
+@media screen and (min-width: 668px) {
+  .contact-link {
+    padding: 20px 40px;
+    min-width: auto;
+  }
+}
+
 
 .contact-link__text {
   color: #ffdb3b;
